@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PipeMoveScript : MonoBehaviour
 {
-    public float speed;
+    public float speed = 5;
+    public float deadZone = -45;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,7 +13,11 @@ public class PipeMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = transform.position + Vector3.left * speed * Time.deltaTime;
+        transform.position += Vector3.left * speed * Time.deltaTime;
+
+        if (transform.position.x < deadZone){
+            Destroy(gameObject);
+        }
         
     }
 }
